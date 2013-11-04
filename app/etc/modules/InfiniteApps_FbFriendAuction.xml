@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <InfiniteApps_FbFriendAuction>
+            <active>true</active>
+            <codePool>local</codePool>
+        </InfiniteApps_FbFriendAuction>
+    </modules>
+</config>
