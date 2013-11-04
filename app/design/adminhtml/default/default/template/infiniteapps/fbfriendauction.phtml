@@ -1,0 +1,65 @@
+<?php /* @var $this InfiniteApps_FbFriendAuction_Block_Fbauction */ ?>
+<?php
+/*
+ * If we are returning from login, close the popup, and reload the calling window.
+ */
+if(isset($_REQUEST['code'])): ?>
+        <script type="text/javascript">
+            <![CDATA[
+            window.opener.location.reload();
+            window.close();
+            ]]>
+        </script>
+<?php endif; ?>
+
+<table class="form-list">
+    <tr>
+        <td class="scope-label">
+            <?php if ($this->isFbLoggedIn()) : ?>
+            <button onclick="setLocation('<?php echo $this->getFbLoginButtonUrl() ?>')" type="button" class="scalable"><span>
+            <span><span><?php echo Mage::helper('adminhtml')->__('Logout of Facebook'); ?></span></span></span></button>
+            <?php else: ?>
+                <button onclick="window.open('<?php echo $this->getFbLoginButtonUrl() ?>', 'Faecbook Login', 'width=1px,height=1px')" type="button" class="scalable"><span>
+                <span><span><?php echo Mage::helper('adminhtml')->__('Connect to Facebook') ?></span></span></span></button>
+            <?php endif; ?>
+</td>
+<td class="scope-label">
+    <?php if ($this->isFbLoggedIn()) : ?>
+        <?php echo Mage::helper('adminhtml')->__('You are logged in as ') . $this->getName(); ?>
+    <?php else : ?>
+        <?php echo Mage::helper('adminhtml')->__('Click here to login to Facebook'); ?>
+    <?php endif; ?>
+</td>
+</tr>
+    <?php if ($this->isFbLoggedIn()) : ?>
+        <tr>
+        <td class="scope-label">
+            <button onclick="setLocation('<?php echo $this->getCreateProductsUrl()?>')" type="button" class="scalable"><span><span><span><?php echo Mage::helper('adminhtml')->__('Create New Products') ?></span></span></span></button>
+        </td>
+        <td class="scope-label">
+            <?php echo Mage::helper('adminhtml')->__('Click here to create new products and categories .')?>
+        </td>
+        </tr>
+    <?php endif; ?>
+</table>
+
+<?php if ($this->isFbLoggedIn()) : ?>
+    <h3><?php echo Mage::helper('adminhtml')->__('This is the data read from facebook that will be converted into products and categories:'); ?></h3>
+    <div class="grid">
+<table>
+    <tr><td><strong>List</strong></td><td><strong>Friends</strong></td></tr>
+
+    <?php foreach ($this->getFriendlists() as $list ): ?>
+        <tr>
+        <td><?php echo $list['name']; ?></td>
+        <td>
+        <table >
+            <?php foreach ($list['members']['data'] as $friend): ?>
+                <tr><td><?php echo $friend['name']; ?></td></tr>
+            <?php endforeach; ?>
+        </table>
+        </td>
+    <?php endforeach; ?>
+</table>
+        </div>
+<?php endif; ?>

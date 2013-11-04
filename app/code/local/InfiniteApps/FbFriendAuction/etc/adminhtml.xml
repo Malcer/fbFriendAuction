@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <infiniteapps>
+            <title>Infinite Apps</title>
+            <children>
+                <infiniteapps_fbfriendauction>
+                    <title>Friend Auction</title>
+                    <action>adminhtml/fbauction</action>
+                </infiniteapps_fbfriendauction>
+            </children>
+        </infiniteapps>
+    </menu>
+</config>

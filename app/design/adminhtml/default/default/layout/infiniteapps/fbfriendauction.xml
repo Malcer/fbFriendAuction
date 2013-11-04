@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_fbauction_index>
+        <reference name="content">
+            <block type="infiniteapps_fbfriendauction/fbauction" name="fbauction.index" template="infiniteapps/fbfriendauction.phtml"/>
+        </reference>
+    </adminhtml_fbauction_index>
+
+</layout>
